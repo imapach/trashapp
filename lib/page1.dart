@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:nice_button/nice_button.dart';
+import 'package:trashapp/repository/dioUtil.dart';
 
 class Page1 extends StatefulWidget {
   @override
@@ -129,7 +130,9 @@ class ImageAlertDialog extends StatelessWidget {
         ),
         FlatButton(
           child: Text("ok"),
-          onPressed: () {},
+          onPressed: () {
+            fun(_imageFile);
+          },
         )
       ],
     );
