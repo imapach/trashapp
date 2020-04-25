@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:nice_button/nice_button.dart';
+import 'package:trashapp/fluroRouter.dart';
 import 'package:trashapp/repository/dioUtil.dart';
 
 class Page1 extends StatefulWidget {
@@ -40,10 +41,12 @@ class _Page1State extends State<Page1> {
           ),
           NiceButton(
             radius: 15,
-            // icon: Icons.photo,
+            icon: Icons.search,
             background: Colors.black,
             text: "search",
-            onPressed: () {},
+            onPressed: () {
+                      router.navigateTo(context, "/trashDetail/${_controller.text}");
+            },
           ),
           SizedBox(
             height: 20,
@@ -130,11 +133,44 @@ class ImageAlertDialog extends StatelessWidget {
         ),
         FlatButton(
           child: Text("ok"),
-          onPressed: () {
-            fun(_imageFile);
+          onPressed: () async {
+            List<String> keywords = await patternRecognition(_imageFile);
+            Navigator.of(context).pop();
+            showKeyWordsSelectBottomSheet(context, keywords);
           },
         )
       ],
+    );
+  }
+}
+
+void showKeyWordsSelectBottomSheet(
+    BuildContext context, List<String> keywords) {
+  List<KeyWordItem> widgets = List();
+  keywords.forEach((keyword) {
+    widgets.add(KeyWordItem(keyword));
+  });
+
+  showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: widgets,
+        );
+      });
+}
+
+class KeyWordItem extends StatelessWidget {
+  final String _keyword;
+  KeyWordItem(this._keyword);
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      child: Container(child: Center(child: Text(_keyword)),width: double.infinity,),
+      onTap: () {
+        router.navigateTo(context, "/trashDetail/$_keyword");
+      },
     );
   }
 }

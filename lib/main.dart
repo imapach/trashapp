@@ -3,8 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:trashapp/page1.dart';
 import 'package:trashapp/page2.dart';
 import 'package:trashapp/page3.dart';
+import 'package:trashapp/page4.dart';
 
-void main() => runApp(MyApp());
+import 'fluroRouter.dart';
+
+void main() {
+  defineRoutes(router);
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -13,7 +19,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         // primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: Colors.blueGrey,
+        scaffoldBackgroundColor: Colors.teal,
+
         appBarTheme:
             AppBarTheme(color: Colors.black, brightness: Brightness.dark),
       ),
@@ -32,7 +39,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _index = 0;
 
-  List<Widget> _pages = [Page1(), Page2(), Page3(), Page3()];
+  List<Widget> _pages = [Page1(), Page2(), Page3(), AboutPage()];
 
   @override
   Widget build(BuildContext context) {
