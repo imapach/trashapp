@@ -1,7 +1,5 @@
 import 'package:fluro/fluro.dart';
-import 'package:trashapp/pages/newsDetailPage.dart';
 import 'package:trashapp/pages/trashDetailPage.dart';
-import 'package:trashapp/pages/trashList.dart';
 
 final router = Router();
 

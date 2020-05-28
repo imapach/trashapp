@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:trashapp/fluroRouter.dart';
 import 'package:trashapp/pages/trashList.dart';
 
 class Page3 extends StatelessWidget {

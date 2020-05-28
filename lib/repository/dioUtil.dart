@@ -12,7 +12,7 @@ class HttpHelper {
 
   HttpHelper._internal() {
     BaseOptions options = BaseOptions(
-      baseUrl: "http://192.168.0.100:8081",
+      baseUrl: "http://139.224.135.139:8081/",
       // connectTimeout: 5000,
       // receiveTimeout: 3000,
     );
@@ -53,7 +53,7 @@ Future<List<String>> patternRecognition(File image) async {
   String base64encode = base64Encode(uint8list);
 
   FormData formData = FormData.fromMap({"image": base64encode});
-  Map<String,dynamic> queryParameters = {"access_token":"24.f35d056a5af721557442fd1a336f9275.2592000.1589640659.282335-19290160"};
+  Map<String,dynamic> queryParameters = {"access_token":"24.43ef0af5addd74c904b2489382daf3dd.2592000.1592819403.282335-19290160"};
   Response response = await dio.post(
       "https://aip.baidubce.com/rest/2.0/image-classify/v2/advanced_general",
       data: formData,

@@ -5,6 +5,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:nice_button/nice_button.dart';
 import 'package:trashapp/fluroRouter.dart';
 import 'package:trashapp/repository/dioUtil.dart';
+import 'package:loading_dialog/loading_dialog.dart';
+
 
 class Page1 extends StatefulWidget {
   @override
@@ -134,7 +136,10 @@ class ImageAlertDialog extends StatelessWidget {
         FlatButton(
           child: Text("ok"),
           onPressed: () async {
+            LoadingDialog loading = LoadingDialog(buildContext: context,loadingMessage: "");
+            loading.show();
             List<String> keywords = await patternRecognition(_imageFile);
+            loading.hide();
             Navigator.of(context).pop();
             showKeyWordsSelectBottomSheet(context, keywords);
           },
